@@ -39,7 +39,7 @@ nowDayStr = ''
 now = datetime.datetime.now()
 nowStr = now.strftime("%Y-%m-%d")
 
-allfile = open(r'./沪深龙虎榜统计_'+nowStr+'.csv','w')
+allfile = open(r'./files/沪深龙虎榜统计_'+nowStr+'.csv','w')
 allfile.write('"日期","代码","名称","净流入流出","流入","流出","偏离值","成交量","成交金额(万元)"')
 for f in files:
     if(os.path.isfile(path+'/'+f) &
