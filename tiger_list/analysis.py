@@ -11,12 +11,12 @@ def writeFile(file,stocks,BS,day):
         allfile.write('|' + day
                       +'|'+s['code']
                       +'|'+s['name']
-                      +'|'+str(float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))
-                      +'|'+BS[s['code']]['buy']
-                      +'|'+BS[s['code']]['sell']
+                      +'|'+str(round((float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))/100000000, 2))
+                      +'|'+str(round(float(BS[s['code']]['buy'])/100000000, 2))
+                      +'|'+str(round(float(BS[s['code']]['sell'])/100000000, 2))
                       +'|'+s['偏离值']
                       +'|'+s['成交量']
-                      +'|'+s['成交金额(万元)']+'|')
+                      +'|'+s['成交金额']+'|')
 
         '''
         allfile.write(day
@@ -27,7 +27,7 @@ def writeFile(file,stocks,BS,day):
                       +","+BS[s["code"]]["sell"]
                       +","+s["偏离值"]
                       +",'"+s["成交量"]
-                      +"','"+s["成交金额(万元)"]+"'")
+                      +"','"+s["成交金额(亿)"]+"'")
         '''
         
 path=r'../tmp'
@@ -40,7 +40,7 @@ now = datetime.datetime.now()
 nowStr = now.strftime("%Y-%m-%d")
 
 allfile = open(path + '/沪深龙虎榜统计_'+nowStr+'.md','w')
-allfile.write('|日期|代码|名称|净流入流出|流入|流出|偏离值|成交量|成交金额(万元)|\n|-|-|-|-|-|-|-|-|-|')
+allfile.write('|日期|代码|名称|净流入流出(亿)|流入(亿)|流出(亿)|偏离值|成交量(万手)|成交金额(亿)|\n|-|-|-|-|-|-|-|-|-|')
 for f in files:
     if(os.path.isfile(path+'/'+f) &
        f.endswith('.txt')):
@@ -86,7 +86,7 @@ for f in files:
                    info.startswith('_(')):
                     
                     tmp = info.split('_')
-                    dictTmp = {'code':tmp[2],'name':tmp[3],'偏离值':tmp[4],'成交量':tmp[5],'成交金额(万元)':tmp[6]}
+                    dictTmp = {'code':tmp[2],'name':tmp[3],'偏离值':tmp[4],'成交量':str(round(float(tmp[5])/10000, 2)),'成交金额':str(round(float(tmp[6])/10000, 2))}
                     stocks.append(dictTmp)
                     
                 elif(readStocks==1 and
@@ -148,7 +148,7 @@ for f in files:
                         #dictTmp = {nowStock:{'buy':str(buy),'sell':str(sell)}}
                         BS[nowStock]={'buy':str(buy),'sell':str(sell)};
                         #write to doc
-                        #print(stocks[0]['成交金额(万元)'])
+                        #print(stocks[0]['成交金额'])
                         #print(BS)
                         
                         writeFile(allfile,stocks,BS,nowDayStr);
@@ -220,7 +220,7 @@ for f in files:
                     cjl = info.split('成交量:')[1].split('_')[0]
                     cje = info.split('成交金额:_')[1]#.split('万元')[0]
                     nowStock = code
-                    dictTmp = {'code':code,'name':name,'偏离值':plz,'成交量':cjl,'成交金额(万元)':cje}
+                    dictTmp = {'code':code,'name':name,'偏离值':plz,'成交量':str(round(float(cjl)/10000, 2)),'成交金额':str(round(float(cje)/10000, 2))}
                     stocks.append(dictTmp)
                     #print(dictTmp)
                     readStocks = 0
@@ -277,7 +277,7 @@ for f in files:
                         cjl = info.split('成交量:')[1].split('_')[0]
                         cje = info.split('成交金额:_')[1]#.split('万元')[0]
                         nowStock = code
-                        dictTmp = {'code':code,'name':name,'偏离值':plz,'成交量':cjl,'成交金额(万元)':cje}
+                        dictTmp = {'code':code,'name':name,'偏离值':plz,'成交量':str(round(float(cjl)/10000, 2)),'成交金额':str(round(float(cje)/10000, 2))}
                         stocks.append(dictTmp)
                         #print(dictTmp)
                         readStocks = 0
