@@ -12,8 +12,8 @@ def writeFile(file,stocks,BS,day):
         allfile.write('\n')
         allfile.write('|' + day
                       +'|'+s['code']
-                      +'|'+s['name']
-                      +'|净流入流出: '+str(round((float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))/100000000, 2))+' 亿|\n')
+                      +'|<font color=red>'+s['name']
+                      +'</font>|净流入流出: '+str(round((float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))/100000000, 2))+' 亿|\n')
         allfile.write('|.|.|.|流入: '+str(round(float(BS[s['code']]['buy'])/100000000, 2))+' 亿|\n')
         allfile.write('|.|.|.|流出: '+str(round(float(BS[s['code']]['sell'])/100000000, 2))+' 亿|\n')
         allfile.write('|.|.|.|偏离值: '+s['偏离值']+'|\n')
