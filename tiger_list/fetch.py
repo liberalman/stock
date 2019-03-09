@@ -30,7 +30,7 @@ def ungzip(data):
         print('未经压缩, 无需解压')
     return data
 def writeFile(fname,data):
-    filename = r'files/'+fname+'.txt'
+    filename = r'../tmp/'+fname+'.txt'
     if os.path.exists(filename):
         message = '文件 + '+filename +' 已存在，跳过'
     else:

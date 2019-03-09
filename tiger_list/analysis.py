@@ -8,15 +8,15 @@ import datetime
 def writeFile(file,stocks,BS,day):
     for s in stocks:
         allfile.write('\n')
-        allfile.write(day
-                      +',"\''+s['code']
-                      +'","'+s['name']
-                      +'",'+str(float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))
-                      +','+BS[s['code']]['buy']
-                      +','+BS[s['code']]['sell']
-                      +','+s['偏离值']
-                      +',"'+s['成交量']
-                      +'","'+s['成交金额(万元)']+'"')
+        allfile.write('|' + day
+                      +'|'+s['code']
+                      +'|'+s['name']
+                      +'|'+str(float(BS[s['code']]['buy'])-float(BS[s['code']]['sell']))
+                      +'|'+BS[s['code']]['buy']
+                      +'|'+BS[s['code']]['sell']
+                      +'|'+s['偏离值']
+                      +'|'+s['成交量']
+                      +'|'+s['成交金额(万元)']+'|')
 
         '''
         allfile.write(day
@@ -30,7 +30,7 @@ def writeFile(file,stocks,BS,day):
                       +"','"+s["成交金额(万元)"]+"'")
         '''
         
-path=r'./files'
+path=r'../tmp'
 #path=r'./a'
 files = os.listdir(path)
 files.sort()
@@ -39,8 +39,8 @@ nowDayStr = ''
 now = datetime.datetime.now()
 nowStr = now.strftime("%Y-%m-%d")
 
-allfile = open(r'./files/沪深龙虎榜统计_'+nowStr+'.csv','w')
-allfile.write('"日期","代码","名称","净流入流出","流入","流出","偏离值","成交量","成交金额(万元)"')
+allfile = open(path + '/沪深龙虎榜统计_'+nowStr+'.md','w')
+allfile.write('|日期|代码|名称|净流入流出|流入|流出|偏离值|成交量|成交金额(万元)|\n|-|-|-|-|-|-|-|-|-|')
 for f in files:
     if(os.path.isfile(path+'/'+f) &
        f.endswith('.txt')):
@@ -73,7 +73,7 @@ for f in files:
             buy = 0
             sell = 0
             for info in infos:
-                
+
                 info = re.sub('\ +', '_',info)
                 info = re.sub('\n', '',info)
                 
@@ -292,5 +292,5 @@ for f in files:
 
 
 allfile.close();
-print('统计完成！'+'文件：'+'./沪深龙虎榜统计_'+nowStr+'.csv')
+print('统计完成！'+'文件：'+'../tmp/沪深龙虎榜统计_'+nowStr+'.csv')
 
