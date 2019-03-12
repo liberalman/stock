@@ -15,7 +15,7 @@ def writeFile(file,stocks,BS,day):
         allfile.write('|.|' + s['name'] + '|流出: '+str(round(float(BS[s['code']]['sell'])/100000000, 2))+' 亿|\n')
         allfile.write('|.|.|偏离值: '+s['偏离值']+'|\n')
         allfile.write('|.|.|成交量: '+s['成交量']+' 万手|\n')
-        allfile.write('|.|.|成交金额: '+s['成交金额']+' 亿|')
+        allfile.write('|.|.|成交金额: '+s['成交金额']+' 亿|\n')
 
         '''
         allfile.write(day
