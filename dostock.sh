@@ -4,7 +4,7 @@ source /etc/profile
 
 # add crontab
 exist=`crontab -l|grep stock`
-if [ -z "${exist}" ];
+if [ -z "${exist}" ];then
   crontab -l > /tmp/crontab.bak
   echo '0 23 * 1,2,3,4,5 * /data/stock/dostock.sh > /var/log/dostock.log 2>&1 &' >> /tmp/crontab.bak
   crontab /tmp/crontab.bak
