@@ -8,7 +8,9 @@ pushd /data/stock/tiger_list
 python3 fetch.py
 python3 analysis.py
 
-content=`cat ../tmp/沪深龙虎榜统计_*.md`
+token=""
+day=`date "+%Y-%m-%d"`
+content=`cat ../tmp/沪深龙虎榜统计_${day}.md`
 curl -d "text=龙虎榜统计&desp=${content}" \
     https://sc.ftqq.com/${token}.send
 
