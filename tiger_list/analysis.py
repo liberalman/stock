@@ -37,7 +37,7 @@ nowDayStr = ''
 now = datetime.datetime.now()
 nowStr = now.strftime("%Y-%m-%d")
 
-allfile = open(path + '/沪深龙虎榜统计_'+nowStr+'.md','w')
+allfile = open(path + '/1沪深龙虎榜统计_'+nowStr+'.md','w')
 
 for f in files:
     if(os.path.isfile(path+'/'+f) &
